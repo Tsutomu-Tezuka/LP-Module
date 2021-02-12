@@ -410,17 +410,30 @@ function burgerEvent() {
 // Modal Window
 $(".js_modal_btn").on('click', modalEvent);
 function modalEvent() {
-  console.log('modal.');
+  $('body').prepend('<div class="modal_bg"></div>');
   if (!$("body").hasClass("modal_is_active")) {
     $('body').addClass('modal_is_active');
   } else {
     $('body').removeClass('modal_is_active');
   }
+  let timer = null;
+  function timeout() {
+    $('.modal_bg').remove();
+    clearTimeout(timer);
+  }
   $.each($('.FourD_demo .js_modal'), modalCount);
   function modalCount(i, e) {
+    $('.modal_bg').on('click', modalBgClick);
+    function modalBgClick() {
+      console.log('modal bg click.')
+      $('body').removeClass('modal_is_active');
+      $(e).removeClass('is_active');
+      timer = setTimeout(timeout, 500);
+    }
     $('.js_modal_close').on('click', closeEvent);
     function closeEvent() {
       $('body').removeClass('modal_is_active');
+      timer = setTimeout(timeout, 500);
       $(e).removeClass('is_active');
     }
     if (!$(e).hasClass("is_active")) {

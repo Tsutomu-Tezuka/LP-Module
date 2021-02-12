@@ -1243,68 +1243,97 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
   z-index: 2 !important;
 }
 
-body.modal_is_active {
-  overflow-y: hidden;
+body {
   position: relative;
-  z-index: 0;
 }
 
-body.modal_is_active::before {
+body::before {
   background-color: rgba(0, 0, 0, 0.5);
   content: "";
   display: block;
+  opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  -webkit-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+}
+
+body.modal_is_active {
+  overflow-y: hidden;
+  z-index: 0;
+}
+
+body.modal_is_active::before {
+  opacity: 1;
+  z-index: 100;
+}
+
+body .modal_bg {
+  height: 100%;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: fixed;
+  left: 0;
+  top: 0;
   z-index: 100;
 }
 
 .js_modal {
-  padding: 7%;
-  position: absolute;
-  visibility: hidden;
-}
-
-.js_modal.is_active {
-  visibility: visible;
+  opacity: 0;
+  margin: 7%;
   position: fixed;
+  visibility: hidden;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: auto;
-  overflow: auto;
+  -webkit-transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
+  transition: visibility 0.5s ease-out, opacity 0.5s ease-out;
   z-index: 101;
+}
+
+.js_modal.is_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.js_modal.is_active .modal_block {
+  overflow: auto;
 }
 
 .js_modal .modal_block {
   background-color: #fff;
   width: 100%;
   height: 100%;
+  line-height: 1.5;
   padding: 10px;
   position: relative;
 }
 
-.js_modal .modal_block .btn__close {
+.js_modal .modal_block .js_modal_close {
   margin-top: 1em;
-  padding: 7px;
-  height: 36px;
-  width: 36px;
 }
 
-.js_modal .modal_block .btn__close.of_circle {
+.js_modal .btn__close.of_circle {
   border-radius: 100%;
   -webkit-box-shadow: 0 0 0 8px #fff;
           box-shadow: 0 0 0 8px #fff;
-  position: absolute;
-  top: -17px;
-  right: -17px;
+  height: 36px;
   margin: 0;
+  padding: 7px;
+  position: absolute;
+  right: -17px;
+  top: -17px;
+  width: 36px;
 }
 
-.js_modal .modal_block .btn__close.of_circle:hover {
+.js_modal .btn__close.of_circle:hover {
   background-color: #666;
 }
 /*# sourceMappingURL=style.css.map */
