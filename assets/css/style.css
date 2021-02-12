@@ -686,6 +686,34 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
           transform: translate(0, 0);
 }
 
+.js_header[data-float="true"][data-design="top"] {
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+
+.js_header[data-float="true"][data-design="top"].is_active {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.js_header[data-float="true"][data-design="bottom"] {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  -webkit-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+}
+
+.js_header[data-float="true"][data-design="bottom"].is_active {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
 .section {
   background-color: #fff;
   position: relative;

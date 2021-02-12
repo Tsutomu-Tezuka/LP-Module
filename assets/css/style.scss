@@ -792,6 +792,26 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
         transform: translate(0, 0);
       }
     }
+    &[data-design="top"] {
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      transform: translate(0, -100%);
+      &.is_active {
+        transform: translate(0, 0);
+      }
+    }
+    &[data-design="bottom"] {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      transform: translate(0, 100%);
+      &.is_active {
+        transform: translate(0, 0);
+      }
+    }
   }
 }
 
