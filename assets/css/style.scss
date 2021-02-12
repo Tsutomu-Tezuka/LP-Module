@@ -318,6 +318,62 @@ $icn_dehaze: icn_dehaze + '.svg';
   }
 }
 
+.burger {
+  background-color: #333;
+  border: none;
+  min-width: 48px;
+  min-height: 48px;
+  outline: none;
+  padding: 0;
+  position: relative;
+  z-index: 99;
+  #burger-svg {
+    display: block;
+    position: relative;
+    .burger-svg__bar {
+      border-radius: 1em;
+      transition: all 0.3s ease-out;
+    }
+    &.is_active {
+      .burger-svg__bar-1 {
+        transform: translate(-12%, 55%) rotate(-45deg);
+      }
+      .burger-svg__bar-2 {
+        opacity: 0;
+      }
+      .burger-svg__bar-3 {
+        transform: translate(62%, -36%) rotate(45deg);
+      }
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.btn__close {
+  background-color: #333;
+  border: none;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  position: relative;
+  .cross-svg {
+    display: block;
+    position: relative;
+    .burger-svg__bar {
+      border-radius: 1em;
+      transition: all 0.3s ease-out;
+    }
+    .burger-svg__bar-1 {
+      transform: translate(-12%, 55%) rotate(-45deg);
+    }
+    .burger-svg__bar-2 {
+      transform: translate(62%, -36%) rotate(45deg);
+    }
+  }
+}
+
 @include max_screen_size(768px) {
   .btn__recruit,
   .btn__contact,
@@ -1295,6 +1351,67 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
     &:focus {
       outline: inset 2px #333;
       z-index: 2 !important;
+    }
+  }
+}
+
+// JavaScript/ Modal
+// ------------------------------------------------
+body {
+  &.modal_is_active {
+    overflow-y: hidden;
+    position: relative;
+    z-index: 0;
+    &::before {
+      background-color: rgba(0,0,0,0.5);
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 100;
+    }
+  }
+}
+.js_modal {
+  padding: 7%;
+  position: absolute;
+  visibility: hidden;
+  &.is_active {
+    visibility: visible;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    overflow: auto;
+    z-index: 101;
+  }
+  .modal_block {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    .btn__close {
+      margin-top: 1em;
+      padding: 7px;
+      height: 36px;
+      width: 36px;
+      &.of_circle {
+        border-radius: 100%;
+        box-shadow: 0 0 0 8px #fff;
+        position: absolute;
+        top: -17px;
+        right: -17px;
+        margin: 0;
+        &:hover {
+          background-color: #666;
+        }
+      }
     }
   }
 }

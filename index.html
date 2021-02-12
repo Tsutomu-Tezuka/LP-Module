@@ -27,6 +27,20 @@
         font-size: 1.6rem;
         margin-bottom: 0.5em;
         margin-top: 1em;
+        text-align: center;
+      }
+      .FourD_demo h2.demo + h3.demo {
+        margin-top: 1.5em;
+      }
+      .FourD_demo h2.demo + h3.demo::before {
+        content: "";
+        display: block;
+        height: 3px;
+        background-size: auto auto;
+        background-color: rgba(255, 255, 255, 1);
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(211, 211, 211, 1) 10px, rgba(211, 211, 211, 1) 20px );
+        margin: 0 auto 1em;
+        width: 290px;
       }
       .FourD_demo .demo.grid_wrap {
         background-color: rgba(155, 155, 155, 0.3);
@@ -805,7 +819,10 @@
         </div>
       </div>
 
-      <h3 class="demo content_center">Parallax / Rellax Plugin & Original Background Image Movement</h3>
+      <hr class="demo_lines">
+
+      <h2 class="demo content_center">Parallax</h2>
+      <h3 class="demo content_center">Rellax Plugin & Original Background Image Movement</h3>
       <div class="section sec_about bg_parallax">
         <div class="inner_wrap autobot pop_and_plop">
           <div class="layout_block">
@@ -826,10 +843,38 @@
 
       <hr class="demo_lines">
 
+      <h2 class="demo content_center">Burger Window</h2>
+      <button class="demo burger">
+        <svg id="burger-svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <title>Show / Hide Navigation</title>
+          <rect class="burger-svg__base" width="48" height="48" fill="#1f201c"/>
+          <g class="burger-svg__bars" fill="#fff">
+            <rect class="burger-svg__bar burger-svg__bar-1" x="14" y="18" rx="1" ry="1" width="22" height="2"/>
+            <rect class="burger-svg__bar burger-svg__bar-2" x="14" y="24" rx="1" ry="1" width="22" height="2"/>
+            <rect class="burger-svg__bar burger-svg__bar-3" x="14" y="30" rx="1" ry="1" width="22" height="2"/>
+          </g>
+        </svg>
+      </button>
+
+      <hr class="demo_lines">
+
       <h2 class="demo content_center">Modal Window</h2>
+      <button class="demo js_modal_btn">
+        modal button
+      </button>
       <div class="demo js_modal">
         <div class="modal_block">
-
+          <p>modal window open.</p>
+          <button class="demo btn__close of_circle js_modal_close">
+            <svg class="cross-svg" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <title>Show / Hide Navigation</title>
+              <rect class="cross-svg__base" width="48" height="48" fill="#0000"/>
+              <g class="cross-svg__bars" fill="#fff">
+                <rect class="burger-svg__bar burger-svg__bar-1" x="-1" y="18" rx="1" ry="1" width="48" height="2"/>
+                <rect class="burger-svg__bar burger-svg__bar-2" x="1" y="32" rx="1" ry="1" width="48" height="2"/>
+              </g>
+            </svg>
+          </button>
         </div>
       </div>
 

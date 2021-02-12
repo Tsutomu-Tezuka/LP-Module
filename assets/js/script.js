@@ -221,6 +221,7 @@ function newsMoreBtn() {
   });
 };
 
+// Accordion
 accordion();
 function accordion() {
   const accordionList = $('.js_accordion .accordion_list');
@@ -391,6 +392,42 @@ function accordion() {
       accordionCloseBtn.removeClass('is_active');
       get_tabindex();
     });
+  }
+}
+
+// Burger Button
+$(".burger").on('click', burgerEvent);
+function burgerEvent() {
+  if (!$(".burger").hasClass("is_active")) {
+    $(this).addClass("is_active");
+    $("#burger-svg").addClass("is_active");
+  } else {
+    $(this).removeClass("is_active");
+    $("#burger-svg").removeClass("is_active");
+  }
+}
+
+// Modal Window
+$(".js_modal_btn").on('click', modalEvent);
+function modalEvent() {
+  console.log('modal.');
+  if (!$("body").hasClass("modal_is_active")) {
+    $('body').addClass('modal_is_active');
+  } else {
+    $('body').removeClass('modal_is_active');
+  }
+  $.each($('.FourD_demo .js_modal'), modalCount);
+  function modalCount(i, e) {
+    $('.js_modal_close').on('click', closeEvent);
+    function closeEvent() {
+      $('body').removeClass('modal_is_active');
+      $(e).removeClass('is_active');
+    }
+    if (!$(e).hasClass("is_active")) {
+      $(e).addClass('is_active');
+    } else {
+      $(e).removeClass('is_active');
+    }
   }
 }
 
