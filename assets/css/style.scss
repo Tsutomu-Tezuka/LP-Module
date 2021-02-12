@@ -1,0 +1,1300 @@
+@charset "utf-8";
+
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+input, select {
+  vertical-align: middle;
+}
+// html5doctor.com Reset Stylesheet - END
+
+
+// ここから下は汎用と調整用のCSS範囲
+
+
+// 半オートメーション用SCSS
+// ------------------------------------------------
+// 共通ブレイクポイントサイズ
+$breakpoint_pc: 1280px;
+$breakpoint_tablet: 768px;
+$breakpoint_sp: 360px;
+//
+// ブレイクポイントの種類
+// ------------------------------------------------
+@mixin max_screen_size($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+@mixin min_screen_size($breakpoint) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+@mixin min_and_max_screen_size($breakpoint_min, $breakpoint_max) {
+  @media screen and (min-width: $breakpoint_min) and (max-width: $breakpoint_max) {
+    @content;
+  }
+}
+
+
+// Element Font Size
+// ------------------------------------------------
+$common_fontsize: 1.6rem;
+$common_h1_fontsize: 2.6rem;
+$common_h2_fontsize: 2.4rem;
+$common_h3_fontsize: 2.2rem;
+$common_h4_fontsize: 2rem;
+$common_h5_fontsize: 1.8rem;
+$common_h6_fontsize: 1.6rem;
+$common_h_lang_fontsize: 1.4rem;
+$common_p_fontsize: 1.6rem;
+$common_li_fontsize: 1.6rem;
+
+
+// Web Fonts
+// ------------------------------------------------
+//
+// Noto Sans JP
+// ************************************************
+$font_noto_sans: 'Noto Sans JP', sans-serif;
+.font_noto_sans {
+  font-family: $font_noto_sans;
+}
+
+
+// common / class
+// ------------------------------------------------
+//
+// 企業カラー
+// ************************************************
+$color__corporate: #9edb25;
+//
+// 基本カラー
+// ************************************************
+$color__white: #fff;
+
+
+
+// ここから下は個別にカスタマイズする範囲
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  font-size: $common_fontsize;
+  font-family: $font_noto_sans;
+  overflow-x: hidden;
+}
+
+main {
+  height: 100%;
+  position: relative;
+}
+
+li {
+  list-style: none;
+}
+
+em {
+  font-style: normal;
+}
+
+a:not(.a__img):not([class*=btn__]) {
+  text-decoration: none;
+}
+
+a:hover:not(.a__img):not([class*=btn__]) {
+  text-decoration: underline;
+}
+
+*::-ms-backdrop, _:-ms-lang(x), a:not(.a__img):not([class*=btn__]) {
+  background-image: linear-gradient(to left, $color__corporate 0%, $color__corporate 100%);
+  background-position: -500px 100%;
+  background-size: 100% 2px;
+}
+
+*::-ms-backdrop, _:-ms-lang(x), a:hover:not(.a__img):not([class*=btn__]) {
+  background-image: linear-gradient(to left, $color__corporate 0%, $color__corporate 100%);
+  background-position: 0 100%;
+}
+
+img {
+  max-width: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+
+body > svg {
+  display: none;
+}
+
+input {
+  white-space: normal;
+}
+
+
+// ロゴ
+// ------------------------------------------------
+// $logo_black: logo_black + '.svg';
+// $logo_white: logo_white + '.svg';
+
+
+// Icons
+// ------------------------------------------------
+// 名称
+// icn　：iconの略
+
+// 採用
+// ************************************************
+$icn_recruit: icn_recruit + '.svg';
+.icn_recruit {
+  background-image: url("../images/" + $icn_recruit);
+}
+
+// メール
+// ************************************************
+$icn_mail: icn_mail + '.svg';
+.icn_mail {
+  background-image: url("images/" + $icn_mail);
+}
+
+// 電話
+// ************************************************
+$icn_phone: icn_phone + '.svg';
+.icn_phone {
+  background-image: url("images/" + $icn_phone);
+}
+
+// 閉じる・クリア
+// ************************************************
+$icn_close: icn_close + '.svg';
+.icn_close {
+  background-image: url("images/" + $icn_close);
+}
+
+// ハンバーガー
+// ************************************************
+$icn_dehaze: icn_dehaze + '.svg';
+.icn_dehaze {
+  background-image: url("images/" + $icn_dehaze);
+}
+
+
+// 汎用ボタン
+// ************************************************
+// 名称
+// btn　：buttonの略
+[class*=btn__] {
+  background-color: #fff;
+  border: none;
+  color: #000;
+  display: block;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+[class*=btn__]:hover {
+  background-color: #ccc;
+}
+
+[class*=btn__].full_w {
+  width: 100%;
+}
+
+.btn__basic {
+  background-color: #fff;
+  box-shadow: inset 0 0 0 1px #ccc;
+}
+
+.btn__recruit {
+  box-shadow: inset 0 0 0 1px #ccc;
+  &::before {
+    bottom: 0;
+    content: url("images/" + $icn_recruit);
+    display: inline-block;
+    height: 32px;
+    left: 20px;
+    margin: auto 0;
+    position: absolute;
+    top: 0;
+    width: 32px;
+  }
+}
+
+@include max_screen_size(768px) {
+  .btn__recruit,
+  .btn__contact,
+  .btn__phone {
+    &::before {
+      left: 3%;
+    }
+    input {
+      padding: 28px 20%;
+    }
+  }
+}
+
+// JS初期ロードでtransitionを一時的に無効化
+// .js__preload {
+//   transition: 0 !important;
+// }
+
+// テキストの非表示
+// ************************************************
+:not(.seo).elem_hide {
+  display: none;
+}
+
+
+// テキストの非表示（SEO、アクセシビリティ対策）
+// ************************************************
+// 名称
+// elem　：elementの略
+:not(.pc):not(.tab):not(.sp):not(.seo).elem_hide {
+  display: none;
+}
+
+:not(.pc):not(.tab):not(.sp).seo.elem_hide {
+  visibility: hidden;
+  position: absolute;
+  height: 0;
+}
+
+tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
+  visibility: collapse;
+}
+
+@include min_screen_size(960px) {
+  :not(.tab):not(.sp):not(.seo).pc.elem_hide {
+    display: none;
+  }
+
+  .pc.seo.elem_hide {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+  }
+
+  tr.pc.seo.elem_hide {
+    visibility: collapse;
+  }
+}
+
+@include max_screen_size(960px) {
+  :not(.pc):not(.sp):not(.seo).tab.elem_hide {
+    display: none;
+  }
+
+  .tab.seo.elem_hide {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+  }
+
+  tr.tab.seo.elem_hide {
+    visibility: collapse;
+  }
+}
+
+@include max_screen_size(768px) {
+  :not(.pc):not(.tab):not(.seo).sp.elem_hide {
+    display: none;
+  }
+
+  .sp.seo.elem_hide {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+  }
+
+  tr.sp.seo.elem_hide {
+    visibility: collapse;
+  }
+}
+
+
+// テキスト折返し調整用
+// ************************************************
+// 名称
+// txt　：textの略
+// brk　：breakの略
+// blk　：blockの略
+// inlblk　：inline-blockの略
+:not(.pc):not(.tab):not(.sp).txt_brk_blk {
+  display: block;
+}
+
+:not(.pc):not(.tab):not(.sp).txt_brk_inlblk {
+  display: inline-block;
+}
+
+@include min_screen_size(960px) {
+  .pc.txt_brk_blk {
+    display: block;
+  }
+
+  .pc.txt_brk_inlblk {
+    display: inline-block;
+  }
+}
+
+@include max_screen_size(960px) {
+  .tab.txt_brk_blk {
+    display: block;
+  }
+
+  .tab.txt_brk_inlblk {
+    display: inline-block;
+  }
+}
+
+@include max_screen_size(768px) {
+  .sp.txt_brk_blk {
+    display: block;
+  }
+
+  .sp.txt_brk_inlblk {
+    display: inline-block;
+  }
+}
+
+// 太字
+// ************************************************
+.style__bold {
+  font-weight: 700;
+}
+
+// 位置
+// ************************************************
+.style__txt_left {
+  text-align: left;
+}
+
+.style__txt_center {
+  text-align: center;
+}
+
+.style__txt_right {
+  text-align: right;
+}
+
+// 見出し
+// ************************************************
+// 名称
+// _lv　：levelの略　headの1から6までを指す意味で利用　例：h1ならhead_lv1
+[class*=head_lv] {
+  font-feature-settings: "palt";
+  letter-spacing: 2px;
+}
+[class*=head_lv] .head_lang {
+  font-size: $common_h_lang_fontsize;
+}
+
+.head_lv1 {
+  font-size: $common_h1_fontsize;
+  line-height: 1.3;
+}
+
+.head_lv2 {
+  font-size: $common_h2_fontsize;
+  line-height: 1.3;
+}
+
+.head_lv3 {
+  font-size: $common_h3_fontsize;
+  line-height: 1.2;
+}
+
+.head_lv4 {
+  font-size: $common_h4_fontsize;
+  line-height: 1.2;
+}
+
+.head_lv5 {
+  font-size: $common_h5_fontsize;
+  line-height: 1.2;
+}
+
+.head_lv6 {
+  font-size: $common_h6_fontsize;
+  line-height: 1.2;
+}
+
+
+// リストパターン
+// ************************************************
+.ul_list {
+  line-height: 1.4;
+  >.list {
+    font-size: $common_li_fontsize;
+    .maker_set {
+      display: inline-block;
+    }
+  }
+}
+
+.ol_list {
+  line-height: 1.4;
+  >.list_item {
+    font-size: $common_li_fontsize;
+    .maker_set {
+      display: inline-block;
+    }
+  }
+}
+
+
+// 用途
+// maker_dot　：中黒
+// maker_number　：連番
+// is_brackets　：括弧
+// is_asterisk　：米印
+.maker_dot .list,
+.maker_number .list {
+  display: flex;
+}
+.maker_dot .list::before,
+.maker_number .list::before {
+  background-color: deeppink;
+  display: inline-block;
+}
+.maker_dot .list::before {
+  content: "・";
+}
+.maker_number {
+  counter-reset: item_number;
+}
+.maker_number .list::before {
+  counter-increment: item_number;
+  content: counter(item_number)".";
+  text-align: right;
+  padding-left: 0.1em;
+  padding-right: 0.25em;
+}
+.maker_number.is_brackets .list::before {
+  content: "("counter(item_number)")";
+}
+.maker_number.is_asterisk .list::before {
+  content: "※"counter(item_number);
+}
+
+
+// レイアウト class
+// ************************************************
+// 名称
+// pos_a　：position absoluteの略
+// pos_r　：position relativeの略
+.pos_a {
+  position: absolute;
+}
+.pos_r {
+  position: relative;
+}
+
+
+// レイアウト class
+// ************************************************
+.cssgrid {
+  display: grid;
+}
+
+.flexbox {
+  display: flex;
+}
+
+
+// CSS Grid / box center
+// ************************************************
+@mixin content_center() {
+  display: grid;
+  place-content: center;
+  gap: 1ch;
+}
+.content_center {
+  @include content_center;
+}
+
+
+// Flexbox / box center
+// ************************************************
+@mixin gentle_flex() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+}
+.gentle_flex {
+  @include gentle_flex;
+}
+
+
+// Flexbox and Margin auto / box center
+// ************************************************
+.autobot {
+  display: flex;
+}
+.autobot > * {
+  margin: auto;
+}
+
+
+// Padding is setting num / box center
+// ************************************************
+.fluffy_center {
+  padding: 10ch;
+}
+
+
+// Position and Transform / box center
+// ************************************************
+@mixin pop_and_plop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pop_and_plop {
+  @include pop_and_plop;
+}
+
+
+// Google Maps
+// ************************************************
+// 名称
+// g_maps　：google mapsの略
+.g_maps {
+  align-items: center;
+  display: flex;
+  max-height: 460px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  a {
+    text-decoration: none;
+    transition: opacity 0.3s ease-out, outline 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  a:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+  a:focus,
+  button:focus {
+    box-shadow: 0 0 0 4px $color__corporate !important;
+  }
+  button {
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    transition: outline 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  .map_block {
+    width: 100%;
+  }
+  [id^=map] {
+    padding-bottom: 56.25%;
+    width: 100%;
+  }
+}
+
+
+// content grupes / ヘッダー
+// ------------------------------------------------
+.header {
+  padding: 10px;
+}
+
+
+// content grupes / スマホ用ヘッダー
+// ------------------------------------------------
+.tab.header,
+.sp.header {
+  align-content: baseline;
+  opacity: 0;
+  padding-top: 48px;
+  right: -320px;
+}
+.sp.header_bar {
+  background-color: #000;
+  display: flex;
+  justify-content: flex-end;
+  left: 0;
+  min-height: 48px;
+  position: fixed;
+  top: -54px;
+  transition: top 0.3s ease-out;
+  width: 100%;
+  z-index: 4;
+  .logo_block {
+    padding-left: 48px;
+    width: 100%;
+  }
+  .logo {
+    display: block;
+    margin: 8px auto;
+  }
+  .burger {
+    background-color: #1f201c;
+    border: none;
+    width: 48px;
+    height: 48px;
+    outline: none;
+    padding: 0;
+  }
+}
+@include max_screen_size(960px) {
+  .tab.header.is_active,
+  .sp.header.is_active {
+    opacity: 1;
+    padding-top: 48px;
+    right: 0;
+    width: 100%;
+  }
+  .sp.header_bar {
+    top: 0;
+    .burger {
+      background-color: #1f201c;
+      border: none;
+      min-width: 48px;
+      min-height: 48px;
+      outline: none;
+      padding: 0;
+      #burger-svg {
+        display: block;
+        position: relative;
+        .burger-svg__bar {
+          border-radius: 1em;
+          transition: all 0.3s ease-out;
+        }
+        &.is_active {
+          .burger-svg__bar-1 {
+            transform: translate(-12%, 55%) rotate(-45deg);
+          }
+          .burger-svg__bar-2 {
+            opacity: 0;
+          }
+          .burger-svg__bar-3 {
+            transform: translate(62%, -36%) rotate(45deg);
+          }
+        }
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// content grupes / スマホ用ヘッダーナビゲーション
+// ------------------------------------------------
+
+
+// content grupes / class wrapper
+// ------------------------------------------------
+.section {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+// content grupes / class grid_wrap
+// ------------------------------------------------
+.grid_wrap {
+  margin: auto;
+  max-width: $breakpoint_tablet;
+}
+
+// content grupes / class inside_m
+// ------------------------------------------------
+// 名称
+// Emmetと統一
+// inside_m　：inside marginの略
+.inside_m {
+  padding-left: 20px;
+  padding-right: 20px;
+  @include max_screen_size($breakpoint_sp) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+// content grupes / flexbox用カラム整列
+// ------------------------------------------------
+// 名称
+// Emmetと統一
+// fxf　：flex-flowの略
+.fxf_r {
+  flex-flow: row;
+}
+.fxf_rr {
+  flex-flow: row-reverse;
+}
+.fxf_c {
+  flex-flow: column;
+}
+.fxf_cr {
+  flex-flow: column-reverse;
+}
+
+// 名称
+// Emmetと統一
+// fxw　：flex-wrapの略
+.fxw_n {
+  flex-wrap: nowrap;
+}
+.fxw_w {
+  flex-wrap: wrap;
+}
+.fxw_wr {
+  flex-wrap: wrap-reverse;
+}
+
+// 名称
+// Emmetと統一
+// ac　：align-contentの略
+// jc　：justify-contentの略
+.ac_c {
+  align-content: center;
+}
+.ac_fe {
+  align-content: flex-end;
+}
+.ac_fs {
+  align-content: flex-start;
+}
+.ac_s {
+  align-content: stretch;
+}
+.ac_sa {
+  align-content: space-around;
+}
+.ac_sb {
+  align-content: space-between;
+}
+.ai_b {
+  align-items: baseline;
+}
+.ai_c {
+  align-items: center;
+}
+.ai_fe {
+  align-items: flex-end;
+}
+.ai_fs {
+  align-items: flex-start;
+}
+.ai_s {
+  align-items: stretch;
+}
+.jc_b {
+  justify-content: baseline;
+}
+.jc_c {
+  justify-content: center;
+}
+.jc_fe {
+  justify-content: flex-end;
+}
+.jc_fs {
+  justify-content: flex-start;
+}
+.jc_sa {
+  justify-content: space-around;
+}
+.jc_sb {
+  justify-content: space-between;
+}
+
+
+// ------------------------------------------------
+// ここから下はホームのスタイル
+// ------------------------------------------------
+
+
+// content grupes / メイン
+// ------------------------------------------------
+// 名称
+// sec　：sectionの略
+// mv　：main visualの略
+.sec_mv {
+  .mv {
+    background-color: #000;
+    background-image: url(../img/pic_mv_01.jpg);
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+    position: relative;
+    transition: background-position-y 0.1s ease;
+    &::before {
+      background: linear-gradient(322deg,rgba(0,145,255,.8) 0,rgba(129,0,255,.5) 65%,rgba(255,192,0,.5) 100%);
+      content: "";
+      display: block;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .layout_block {
+      position: relative;
+      padding-left: 2em;
+      padding-right: 1em;
+      .badge {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 2em;
+        position: absolute;
+        left: 0;
+        top: -70%;
+      }
+      .title {
+        font-size: 3.6rem;
+      }
+      .catch {
+        font-size: 1.8rem;
+        padding-top: 1em;
+      }
+    }
+  }
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+
+// content grupes / 概要
+// ------------------------------------------------
+.sec_about {
+  background-color: #000;
+  background-image: url(../img/pic_about.jpg);
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  transition: background-position-y 0.1s ease;
+  &::before {
+    background: linear-gradient(322deg,rgba(0,145,255,.8) 0,rgba(129,0,255,.5) 65%,rgba(255,192,0,.5) 100%);
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .inner_wrap {
+    width: 100%;
+  }
+  .pos_a {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    top: 0;
+  }
+  .rellax {
+    transition: transform 0.8s ease-out;
+  }
+  .layout_block {
+    position: relative;
+    padding-left: 2em;
+    padding-right: 1em;
+    .head_lv2 {
+      font-size: 3.6rem;
+    }
+    .catch {
+      font-size: 1.8rem;
+      padding-top: 1em;
+    }
+  }
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+
+// content grupes / ポイント
+// ------------------------------------------------
+.sec_point {
+  background-color: #000;
+  background-image: url(../img/pic_point.jpg);
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  position: relative;
+  transition: background-position-y 0.1s ease;
+  &::before {
+    background: linear-gradient(322deg,rgba(0,145,255,.8) 0,rgba(129,0,255,.5) 65%,rgba(255,192,0,.5) 100%);
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+
+// content grupes / 企業情報
+// ------------------------------------------------
+.sec_corporate {
+  height: 100vh;
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+
+// content grupes / 更新情報
+// ------------------------------------------------
+.sec_news {
+  height: 100vh;
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+// content grupes / お問い合わせ
+// ------------------------------------------------
+.sec_contact {
+  height: 100vh;
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+
+// content footer / フッター
+// ------------------------------------------------
+.sec_footer {
+  height: 100vh;
+  // @include max_screen_size($breakpoint_tablet) {
+  // }
+  // @include max_screen_size($breakpoint_sp) {
+  // }
+}
+
+
+// ------------------------------------------------
+// ここから下はページごとのスタイル
+// ------------------------------------------------
+
+
+// content page / フォーム
+// ------------------------------------------------
+.page_forme {
+  .sec_forme {
+    height: 100vh;
+    // @include max_screen_size($breakpoint_tablet) {
+    // }
+    // @include max_screen_size($breakpoint_sp) {
+    // }
+  }
+}
+
+
+// privacy page / 個人情報保護ページ
+// ------------------------------------------------
+.page_privacy {
+  .sec_privacy {
+    height: 100vh;
+    // @include max_screen_size($breakpoint_tablet) {
+    // }
+    // @include max_screen_size($breakpoint_sp) {
+    // }
+  }
+}
+
+
+// 404 page / Not Found
+// ------------------------------------------------
+.page_404 {
+  .sec_404 {
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    .head_lv2 {
+      $common_h2_fontsize: 7.2rem;
+      font-size: $common_h2_fontsize;
+      line-height: 1;
+      margin: auto;
+      padding: 80px 16px;
+    }
+    .head_small {
+      font-size: 2.8rem;
+    }
+    .head_lang {
+      display: block;
+      $common_h_lang_fontsize: 2.8rem;
+      font-size: $common_h_lang_fontsize;
+      line-height: 1.4;
+      padding-top: 30px;
+    }
+    .head_lang_small {
+      font-size: 1.6rem;
+    }
+  }
+  .error_wrapper {
+    padding: 80px 8.5% 80px 0;
+    width: 100%;
+  }
+  .contact_block {
+    padding: 80px 8.5%;
+    width: 100%;
+    +.wpcf7-response-output {
+      margin: 40px 8.5%;
+      padding: 1em;
+    }
+  }
+  &.sec_main {
+    background-image: url("images/sec_mainvisual@2x.jpg");
+    background-position: 80% 75%;
+    background-size: cover;
+    height: 360px;
+    .head_lv1 {
+      margin: 0 25% 0 14%;
+    }
+    &::after {
+      content: none;
+    }
+    .text {
+      font-size: 1.4rem;
+      margin-bottom: 80px;
+      margin-top: 40px;
+      padding-top: 0;
+    }
+  }
+}
+
+
+// JavaScript / Accordion
+// ------------------------------------------------
+.js_accordion {
+  display: flex;
+  flex-wrap: wrap;
+  &.of_fit {
+    .accordion_list {
+      &:nth-child(1n+2) {
+        margin-top: 0;
+      }
+    }
+  }
+  &:not(.of_step) {
+    .accordion_list {
+      flex: 1 100%;
+      transition: background-color 0.2s ease-in-out;
+    }
+    .contents_block {
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      height: 0;
+      line-height: 1.5;
+      max-height: 100%;
+      overflow: hidden;
+      position: relative;
+      transition: height 0.2s ease-out, display 0.2s ease-out;
+      z-index: 0;
+    }
+  }
+  input {
+    vertical-align: top;
+  }
+  .accordion_list {
+    box-shadow: 0 0 0 1px #ccc;
+    &:nth-child(1n+2) {
+      margin-top: 14px;
+    }
+    &.is_active {
+      .btn_accordion {
+        &::before {
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          border-style: solid;
+          border-width: 0 1px 1px 0;
+          border-color: #333;
+          width: 12px;
+          height: 12px;
+          transform: rotate(-135deg) translate(0, -3px);
+          z-index: 1;
+        }
+      }
+    }
+    &:not(.is_active) {
+      .btn_accordion {
+        &::before {
+          border-color: #333;
+          border-style: solid;
+          border-width: 0 1px 1px 0;
+          bottom: 0;
+          height: 12px;
+          margin: auto;
+          top: 0;
+          transform: rotate(45deg) translate(-3px, 0);
+          width: 12px;
+          z-index: 1;
+        }
+      }
+    }
+    .btn_accordion {
+      &[type="button"] {
+        line-height: 1.8;
+        padding: .5em 2.8em .6em 0.5em;
+        text-align: left;
+      }
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        right: 1em;
+        transition: transform 0.2s ease-in-out;
+        z-index: 0;
+      }
+    }
+  }
+  .contents_block {
+    &.is_active {
+      height: auto;
+    }
+    .accordion_inner_wrap {
+      line-height: 1;
+      padding: 1em;
+      * {
+        line-height: 1.4;
+      }
+    }
+  }
+  .btn_accordion {
+    background-color: #F7F7F7;
+    box-shadow: 0 0 0 1px #ccc;
+    border: none;
+    color: #333;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.2s ease-in-out;
+    user-select: none;
+    width: 100%;
+    z-index: 1;
+    &:focus {
+      outline: inset 2px #333;
+      z-index: 2 !important;
+    }
+  }
+}
