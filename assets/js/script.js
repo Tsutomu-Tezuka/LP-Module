@@ -68,7 +68,7 @@ function anchorScroll() {
         var href = $(this).attr("href");
         $(".sp.header_bar").removeClass("is_active");
         $(".header").removeClass("is_active");
-        $("#burger-svg").removeClass("is_active");
+        $(".burger-svg").removeClass("is_active");
         // 背景固定を解除
         $("html, body").css({
           "overflow-y": "auto",
@@ -132,8 +132,8 @@ function func_elemOffsetPoint() {
   });
 }
 
-// ヘッダーのリサイズ処理、ハンバーガーボタン
-// headerEvent();
+// ヘッダーのリサイズ処理
+headerEvent();
 function headerEvent() {
   $(window).on("load", function () {
     let window_width;
@@ -145,7 +145,7 @@ function headerEvent() {
         $(".sp.header_bar").removeClass("is_active");
         $("main").removeClass('sp').addClass('pc');
         $(".header").removeClass("tab sp is_active");
-        $("#burger-svg").removeClass("is_active");
+        $(".burger-svg").removeClass("is_active");
       }
       if (window_width <= 960 && window_width > 768) {
         // console.log('tablet size.');
@@ -172,33 +172,100 @@ function headerEvent() {
   });
   burger();
   function burger() {
-    $("#burger-svg").on('click', function () {
-      let windowHeight = $(window).height();
-      // console.log(windowHeight);
-      let elemPosition = $("body").get(0).offsetTop - windowHeight;
-  
-      if (!$(".sp.header_bar").hasClass("is_active")) {
-        $(this).addClass("is_active");
-        $(".sp.header_bar").addClass("is_active");
-        $(".header").addClass("is_active");
-  
+    // let timer_addTrs = null;
+    // function timeout_addTrs() {
+    //   $('.js_header').css({
+    //     'transition': 'transform 0.3s ease-out',
+    //   });
+    //   clearTimeout(timer_addTrs);
+    // }
+    // timer_addTrs = setTimeout(timeout_addTrs, 100);
+    // 左側から出す
+    $('.js_burger[data-header="left"]').on('click', headerLeftEvent);
+    function headerLeftEvent() {
+      $('.js_header').attr('data-design', 'left');
+      if (!$('.js_burger[data-header="left"]').hasClass('is_active')) {
+        $('.js_header').addClass('is_active');
         // ハンバーガーボタンをクリックしたあとの背景固定
-        $("html, body").css({
-          "overflow-y": "hidden",
-        });
+        $("body").addClass('js_disable_scroll')
+        bgClickElement();
       } else {
-        $("#burger-svg").removeClass("is_active");
-        $(".sp.header_bar").removeClass("is_active");
-        $(".header").removeClass("is_active");
-  
+        $('.js_header').removeClass('is_active');
         // 背景固定を解除
-        $("html, body").css({
-          "overflow-y": "auto",
-          "-webkit-overflow-scrolling": "touch",
-        });
-        return false;
+        $("body").removeClass('js_disable_scroll');
       }
-    });
+      if($('body[data-modal="true"]')[0]) {
+        let timer = null;
+        function timeout() {
+          $('.modal_bg').remove();
+          $('.modal_bg').on();
+          clearTimeout(timer);
+        }
+        $('.js_modal_close').on('click', closeEvent);
+        function closeEvent() {
+          $('body').attr('data-modal', false);
+          $("body").removeClass('js_disable_scroll');
+          $('.modal_bg').remove();
+          $('.js_header').removeClass('is_active');
+          $(".js_burger").removeClass('is_active');
+          $(".burger-svg").removeClass('is_active');
+          timer = setTimeout(timeout, 1000);
+        }
+        $('.modal_bg').on('click', modalBgClick);
+        function modalBgClick() {
+          $('body').attr('data-modal', false);
+          $("body").removeClass('js_disable_scroll');
+          $('.js_header').removeClass('is_active');
+          $(".js_burger").removeClass('is_active');
+          $(".burger-svg").removeClass('is_active');
+          timer = setTimeout(timeout, 500);
+          $('.modal_bg').off();
+        }
+      }
+    };
+    // 右側から出す
+    $('.js_burger[data-header="right"]').on('click', headerRightEvent);
+    function headerRightEvent() {
+      $('.js_header').attr('data-design', 'right');
+      if (!$('.js_burger[data-header="right"]').hasClass('is_active')) {
+        $('.js_header').addClass('is_active');
+        // ハンバーガーボタンをクリックしたあとの背景固定
+        $("body").addClass('js_disable_scroll')
+        bgClickElement();
+      } else {
+        $('.js_header').removeClass('is_active');
+        // 背景固定を解除
+        $("body").removeClass('js_disable_scroll');
+      }
+      if($('body[data-modal="true"]')[0]) {
+        let timer = null;
+        function timeout() {
+          $('.modal_bg').remove();
+          $('.modal_bg').on();
+          clearTimeout(timer);
+        }
+        $('.js_modal_close').on('click', closeEvent);
+        function closeEvent() {
+          $('body').attr('data-modal', false);
+          $("body").removeClass('js_disable_scroll');
+          $('.modal_bg').remove();
+          $('.js_header').removeClass('is_active');
+          $(".js_burger").removeClass('is_active');
+          $(".burger-svg").removeClass('is_active');
+          timer = setTimeout(timeout, 500);
+        }
+        $('.modal_bg').on('click', modalBgClick);
+        function modalBgClick() {
+          $('body').attr('data-modal', false);
+          $("body").removeClass('js_disable_scroll');
+          $('.js_header').removeClass('is_active');
+          $(".js_burger").removeClass('is_active');
+          $(".burger-svg").removeClass('is_active');
+          timer = setTimeout(timeout, 500);
+          $('.modal_bg').off();
+        }
+      }
+    };
   }
 };
 
@@ -396,50 +463,59 @@ function accordion() {
 }
 
 // Burger Button
-$(".burger").on('click', burgerEvent);
+$(".js_burger").on('click', burgerEvent);
 function burgerEvent() {
-  if (!$(".burger").hasClass("is_active")) {
-    $(this).addClass("is_active");
-    $("#burger-svg").addClass("is_active");
+  $.each($(this), burgerCount);
+  function burgerCount(i, e) {
+    if (!$(e).hasClass("is_active")) {
+      $(e).addClass("is_active");
+      $(e).find('.burger-svg').addClass("is_active");
+    } else {
+      $(e).removeClass("is_active");
+      $(e).find('.burger-svg').removeClass("is_active");
+    }
+  }
+}
+
+// Background Click Elements
+function bgClickElement() {
+  $('body').prepend('<div class="modal_bg"></div>');
+  if (!$("body").hasClass("modal_is_active")) {
+    $('body').attr('data-modal', true);
   } else {
-    $(this).removeClass("is_active");
-    $("#burger-svg").removeClass("is_active");
+    $('body').attr('data-modal', false);
   }
 }
 
 // Modal Window
 $(".js_modal_btn").on('click', modalEvent);
 function modalEvent() {
-  $('body').prepend('<div class="modal_bg"></div>');
-  if (!$("body").hasClass("modal_is_active")) {
-    $('body').addClass('modal_is_active');
-  } else {
-    $('body').removeClass('modal_is_active');
-  }
+  bgClickElement();
   let timer = null;
   function timeout() {
     $('.modal_bg').remove();
+    $('.modal_bg').on();
     clearTimeout(timer);
   }
   $.each($('.FourD_demo .js_modal'), modalCount);
   function modalCount(i, e) {
     $('.modal_bg').on('click', modalBgClick);
-    function modalBgClick() {
-      console.log('modal bg click.')
-      $('body').removeClass('modal_is_active');
-      $(e).removeClass('is_active');
-      timer = setTimeout(timeout, 500);
-    }
     $('.js_modal_close').on('click', closeEvent);
-    function closeEvent() {
-      $('body').removeClass('modal_is_active');
-      timer = setTimeout(timeout, 500);
-      $(e).removeClass('is_active');
-    }
     if (!$(e).hasClass("is_active")) {
       $(e).addClass('is_active');
     } else {
       $(e).removeClass('is_active');
+    }
+    function closeEvent() {
+      $('body').attr('data-modal', false);
+      timer = setTimeout(timeout, 500);
+      $(e).removeClass('is_active');
+    }
+    function modalBgClick() {
+      $('body').attr('data-modal', false);
+      $(e).removeClass('is_active');
+      timer = setTimeout(timeout, 500);
+      $('.modal_bg').off();
     }
   }
 }

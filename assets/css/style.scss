@@ -318,7 +318,7 @@ $icn_dehaze: icn_dehaze + '.svg';
   }
 }
 
-.burger {
+.js_burger {
   background-color: #333;
   border: none;
   min-width: 48px;
@@ -327,7 +327,7 @@ $icn_dehaze: icn_dehaze + '.svg';
   padding: 0;
   position: relative;
   z-index: 99;
-  #burger-svg {
+  .burger-svg {
     display: block;
     position: relative;
     .burger-svg__bar {
@@ -637,11 +637,15 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
 // 名称
 // pos_a　：position absoluteの略
 // pos_r　：position relativeの略
+// pos_f　：position fixedの略
 .pos_a {
   position: absolute;
 }
 .pos_r {
   position: relative;
+}
+.pos_f {
+  position: fixed;
 }
 
 
@@ -757,86 +761,43 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
 .header {
   padding: 10px;
 }
-
-
-// content grupes / スマホ用ヘッダー
-// ------------------------------------------------
-.tab.header,
-.sp.header {
-  align-content: baseline;
-  opacity: 0;
-  padding-top: 48px;
-  right: -320px;
+.js_header {
+  transform: translate(-100%, 0);
+  transition: transform 0.3s ease-out;
+  z-index: 100;
 }
-.sp.header_bar {
-  background-color: #000;
-  display: flex;
-  justify-content: flex-end;
-  left: 0;
-  min-height: 48px;
-  position: fixed;
-  top: -54px;
-  transition: top 0.3s ease-out;
-  width: 100%;
-  z-index: 4;
-  .logo_block {
-    padding-left: 48px;
-    width: 100%;
+.js_header {
+  &[data-design],
+  &[data-float="true"] {
+    background-color: #333;
+    color: #fff;
+    width: 50%;
+    height: 100%;
   }
-  .logo {
-    display: block;
-    margin: 8px auto;
-  }
-  .burger {
-    background-color: #1f201c;
-    border: none;
-    width: 48px;
-    height: 48px;
-    outline: none;
-    padding: 0;
-  }
-}
-@include max_screen_size(960px) {
-  .tab.header.is_active,
-  .sp.header.is_active {
-    opacity: 1;
-    padding-top: 48px;
-    right: 0;
-    width: 100%;
-  }
-  .sp.header_bar {
-    top: 0;
-    .burger {
-      background-color: #1f201c;
-      border: none;
-      min-width: 48px;
-      min-height: 48px;
-      outline: none;
-      padding: 0;
-      #burger-svg {
-        display: block;
-        position: relative;
-        .burger-svg__bar {
-          border-radius: 1em;
-          transition: all 0.3s ease-out;
-        }
-        &.is_active {
-          .burger-svg__bar-1 {
-            transform: translate(-12%, 55%) rotate(-45deg);
-          }
-          .burger-svg__bar-2 {
-            opacity: 0;
-          }
-          .burger-svg__bar-3 {
-            transform: translate(62%, -36%) rotate(45deg);
-          }
-        }
+  &[data-float="true"] {
+    position: fixed;
+    &[data-design="left"] {
+      top: 0;
+      left: 0;
+      transform: translate(-100%, 0);
+      &.is_active {
+        transform: translate(0, 0);
       }
-      &:hover {
-        cursor: pointer;
+    }
+    &[data-design="right"] {
+      top: 0;
+      right: 0;
+      transform: translate(100%, 0);
+      &.is_active {
+        transform: translate(0, 0);
       }
     }
   }
+}
+
+// content grupes / スマホ用ヘッダー
+// ------------------------------------------------
+@include max_screen_size(960px) {
 }
 
 // content grupes / スマホ用ヘッダーナビゲーション
@@ -1239,6 +1200,17 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
 }
 
 
+// JavaScript / disable Scroll
+// ------------------------------------------------
+body:not(.js_disable_scroll) {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.js_disable_scroll {
+  overflow-y: hidden;
+}
+
+
 // JavaScript / Accordion
 // ------------------------------------------------
 .js_accordion {
@@ -1355,6 +1327,7 @@ tr:not(.pc):not(.tab):not(.sp).seo.elem_hide {
   }
 }
 
+
 // JavaScript/ Modal
 // ------------------------------------------------
 body {
@@ -1371,7 +1344,7 @@ body {
     width: 100%;
     transition: opacity 0.5s ease-out;
   }
-  &.modal_is_active {
+  &[data-modal="true"] {
     overflow-y: hidden;
     z-index: 0;
     &::before {
