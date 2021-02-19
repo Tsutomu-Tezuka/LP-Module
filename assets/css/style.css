@@ -291,12 +291,9 @@ input {
           transform: translate(62%, -36%) rotate(45deg);
 }
 
-.btn_animate {
-  position: relative;
-}
-
-.hvr_flipp:hover {
+.btn_animate:hover {
   background-color: transparent;
+  position: relative;
 }
 
 .hvr_flipp .front,
@@ -360,6 +357,86 @@ input {
 .hvr_flipp[data-flipp="y"]:hover .rebirth {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
+}
+
+.hvr_slide {
+  overflow: hidden;
+}
+
+.hvr_slide .front,
+.hvr_slide .rebirth {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+}
+
+.hvr_slide .front {
+  background-color: #eee;
+  z-index: 2;
+}
+
+.hvr_slide[data-slide-front="top"], .hvr_slide[data-slide-front="bottom"], .hvr_slide[data-slide-front="left"], .hvr_slide[data-slide-front="right"] {
+  background-color: #ccc;
+  -webkit-transform: translateX(0%) translateY(0%);
+          transform: translateX(0%) translateY(0%);
+  z-index: 1;
+}
+
+.hvr_slide[data-slide-front="top"]:hover .front {
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+.hvr_slide[data-slide-front="top"]:hover .rebirth {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+.hvr_slide[data-slide-front="bottom"]:hover .front {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+.hvr_slide[data-slide-front="bottom"]:hover .rebirth {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+.hvr_slide[data-slide-front="left"]:hover .front {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.hvr_slide[data-slide-front="left"]:hover .rebirth {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.hvr_slide[data-slide-front="right"]:hover .front {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.hvr_slide[data-slide-front="right"]:hover .rebirth {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
 }
 
 @media screen and (max-width: 768px) {
