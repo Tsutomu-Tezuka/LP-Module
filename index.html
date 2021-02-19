@@ -46,7 +46,7 @@
       .FourD_demo .demo.grid_wrap {
         background-color: rgba(155, 155, 155, 0.3);
       }
-      .FourD_demo .demo .grid {
+      .FourD_demo .demo .grid:not([data-fxcol]) {
         background-color: rgba(155, 155, 155, 0.7);
         min-height: 300px;
       }
@@ -140,8 +140,8 @@
         <h3 class="demo content_center">ul, ol / maker custom element</h3>
         <ul class="demo ul_list">
           <li class="list"><span class="maker_set">😆</span> Est dolor stet dolor diam dolor ut invidunt et. Est no sed et diam sit voluptua sit labore, dolore accusam dolores labore et diam lorem erat no. Labore voluptua elitr ipsum sanctus takimata eirmod takimata amet nonumy. Erat diam dolores no sed amet elitr.</li>
-          <li class="list"><span class="maker_set">🍜</span></li>
-          <li class="list"><span class="maker_set">🐶</span></li>
+          <li class="list"><span class="maker_set">🍜</span> Est dolor stet dolor diam dolor ut invidunt et.</li>
+          <li class="list"><span class="maker_set">🐶</span> Est dolor stet dolor diam dolor ut invidunt et.</li>
         </ul>
         <h3 class="demo content_center">ul, ol / maker number</h3>
         <ol class="demo ul_list maker_number">
@@ -179,9 +179,9 @@
           <button class="btn__basic full_w">button</button>
         </div>
 
-        <h3 class="demo content_center">button / flipp X</h3>
+        <h3 class="demo content_center" >button / flipp X</h3>
         <div class="inside_m gentle_flex">
-          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp="x">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp="x" data-warp="hide">
             <span class="front">button front</span>
             <span class="rebirth">button open</span>
           </button>
@@ -189,39 +189,103 @@
 
         <h3 class="demo content_center">button / flipp Y</h3>
         <div class="inside_m gentle_flex">
-          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp="y">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp="y" data-warp="hide">
             <span class="front">button front</span>
             <span class="rebirth">button open</span>
           </button>
         </div>
 
-        <h3 class="demo content_center">button / slide front panel Top</h3>
+        <h3 class="demo content_center">button / flipp front panel Top</h3>
         <div class="inside_m gentle_flex">
-          <button class="btn__basic full_w btn_animate hvr_slide" data-slide-front="top">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-front="top" data-warp="hide">
             <span class="front">button front</span>
             <span class="rebirth">button open</span>
           </button>
         </div>
 
-        <h3 class="demo content_center">button / slide front panel Bottom</h3>
+        <h3 class="demo content_center">button / flipp front panel Bottom</h3>
         <div class="inside_m gentle_flex">
-          <button class="btn__basic full_w btn_animate hvr_slide" data-slide-front="bottom">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-front="bottom" data-warp="hide">
             <span class="front">button front</span>
             <span class="rebirth">button open</span>
           </button>
         </div>
 
-        <h3 class="demo content_center">button / slide front panel Lfet</h3>
+        <h3 class="demo content_center">button / flipp front panel Lfet</h3>
         <div class="inside_m gentle_flex">
-          <button class="btn__basic full_w btn_animate hvr_slide" data-slide-front="left">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-front="left" data-warp="hide">
             <span class="front">button front</span>
             <span class="rebirth">button open</span>
           </button>
         </div>
 
-        <h3 class="demo content_center">button / slide front panel Right</h3>
+        <h3 class="demo content_center">button / flipp front panel Right</h3>
         <div class="inside_m gentle_flex">
-          <button class="btn__basic full_w btn_animate hvr_slide" data-slide-front="right">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-front="right" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp rebirth panel Top</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-rebirth="top" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp rebirth panel Bottom</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-rebirth="bottom" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp rebirth panel Lfet</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-rebirth="left" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp rebirth panel Right</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-rebirth="right" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp slide panel Top</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-slide="top" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp slide panel Bottom</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-slide="bottom" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp slide panel Lfet</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-slide="left" data-warp="hide">
+            <span class="front">button front</span>
+            <span class="rebirth">button open</span>
+          </button>
+        </div>
+
+        <h3 class="demo content_center">button / flipp slide panel Right</h3>
+        <div class="inside_m gentle_flex">
+          <button class="btn__basic full_w btn_animate hvr_flipp" data-flipp-slide="right" data-warp="hide">
             <span class="front">button front</span>
             <span class="rebirth">button open</span>
           </button>
@@ -755,15 +819,10 @@
 
         <h3 class="demo content_center">Grid / 1/1</h3>
         <div class="demo grid_wrap inside_m">
-          <div class="grid flexbox fxw_w" data-fxcol="1/1">
+          <div class="grid flexbox" data-fxcol="1/1">
             <div class="col">
               <div class="col_inner">
                 1
-              </div>
-            </div>
-            <div class="col">
-              <div class="col_inner">
-                2
               </div>
             </div>
           </div>

@@ -403,6 +403,9 @@ $icn_dehaze: icn_dehaze + '.svg';
 }
 
 // hover animation - Flipp
+.hvr_flipp[data-warp="hide"] {
+  overflow: hidden;
+}
 .hvr_flipp .front,
 .hvr_flipp .rebirth {
   backface-visibility: hidden;
@@ -420,64 +423,67 @@ $icn_dehaze: icn_dehaze + '.svg';
   background-color: #eee;
   z-index: 2;
 }
-.hvr_flipp[data-flipp="x"] .rebirth {
-  background-color: #ccc;
-  transform: rotateX(180deg);
-  z-index: 1;
-}
-.hvr_flipp[data-flipp="x"]:hover .front {
-  transform: rotateX(180deg);
-}
-.hvr_flipp[data-flipp="x"]:hover .rebirth {
-  transform: rotateX(0deg);
-}
-.hvr_flipp[data-flipp="y"] .rebirth {
-  background-color: #ccc;
-  transform: rotateY(180deg);
-  z-index: 1;
-}
-.hvr_flipp[data-flipp="y"]:hover .front {
-  transform: rotateY(180deg);
-}
-.hvr_flipp[data-flipp="y"]:hover .rebirth {
-  transform: rotateY(0deg);
-}
 
-// hover animation - Slide
-.hvr_slide {
-  overflow: hidden;
-}
-.hvr_slide .front,
-.hvr_slide .rebirth {
-  backface-visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  transition: transform 0.5s ease;
-}
-.hvr_slide .front {
-  background-color: #eee;
-  z-index: 2;
-}
-
-// mixin - data-slide-front
-%css_btn_anime_base {
-  background-color: #ccc;
-  transform: translateX(0%) translateY(0%);
-  z-index: 1;
-}
-@mixin slide_front ($translate_name) {
-  .hvr_slide[data-slide-front="#{$translate_name}"] {
+@mixin flipp_front ($rotate_name) {
+  .hvr_flipp[data-flipp="#{$rotate_name}"] {
     @content;
   }
 }
+@include flipp_front(x) {
+  .rebirth {
+    background-color: #ccc;
+    transform: rotateX(180deg);
+    z-index: 1;
+  }
+  &:hover {
+    .front {
+      transform: rotateX(180deg);
+    }
+    .rebirth {
+      transform: rotateX(0deg);
+    }
+  }
+}
+@include flipp_front(y) {
+  .rebirth {
+    background-color: #ccc;
+    transform: rotateY(180deg);
+    z-index: 1;
+  }
+  &:hover {
+    .front {
+      transform: rotateY(180deg);
+    }
+    .rebirth {
+      transform: rotateY(0deg);
+    }
+  }
+}
 
-@include slide_front(top) {
+// hover animation - Slide
+.hvr_flipp .front {
+  background-color: #eee;
+}
+.hvr_flipp .rebirth {
+  background-color: #ccc;
+}
+
+// mixin - data-flipp-front
+.hvr_flipp[data-flipp-front] {
+  .front {
+    z-index: 2;
+  }
+}
+%css_btn_anime_base {
+  transform: translateX(0%) translateY(0%);
+  z-index: 1;
+}
+@mixin flipp_front ($translate_name) {
+  .hvr_flipp[data-flipp-front="#{$translate_name}"] {
+    @content;
+  }
+}
+@include flipp_front(top) {
   @extend %css_btn_anime_base;
   &:hover {
     .front {
@@ -488,7 +494,7 @@ $icn_dehaze: icn_dehaze + '.svg';
     }
   }
 }
-@include slide_front(bottom) {
+@include flipp_front(bottom) {
   @extend %css_btn_anime_base;
   &:hover {
     .front {
@@ -499,7 +505,7 @@ $icn_dehaze: icn_dehaze + '.svg';
     }
   }
 }
-@include slide_front(left) {
+@include flipp_front(left) {
   @extend %css_btn_anime_base;
   &:hover {
     .front {
@@ -510,7 +516,7 @@ $icn_dehaze: icn_dehaze + '.svg';
     }
   }
 }
-@include slide_front(right) {
+@include flipp_front(right) {
   @extend %css_btn_anime_base;
   &:hover {
     .front {
@@ -521,6 +527,175 @@ $icn_dehaze: icn_dehaze + '.svg';
     }
   }
 }
+
+// mixin - data-flipp-rebirth
+.hvr_flipp[data-flipp-rebirth] {
+  .front {
+    z-index: 1;
+  }
+}
+@mixin flipp_rebirth ($translate_name) {
+  .hvr_flipp[data-flipp-rebirth="#{$translate_name}"] {
+    @content;
+  }
+}
+@include flipp_rebirth(top) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateY(0%);
+  }
+  .rebirth {
+    transform: translateY(100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateY(0%);
+    }
+    .rebirth {
+      transform: translateY(0%);
+    }
+  }
+}
+@include flipp_rebirth(bottom) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateY(0%);
+  }
+  .rebirth {
+    transform: translateY(-100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateY(0%);
+    }
+    .rebirth {
+      transform: translateY(0%);
+    }
+  }
+}
+@include flipp_rebirth(left) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateX(0%);
+  }
+  .rebirth {
+    transform: translateX(100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateX(0%);
+    }
+    .rebirth {
+      transform: translateX(0%);
+    }
+  }
+}
+@include flipp_rebirth(right) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateX(0%);
+  }
+  .rebirth {
+    transform: translateX(-100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateX(0%);
+    }
+    .rebirth {
+      transform: translateX(0%);
+    }
+  }
+}
+
+// mixin - data-flipp-slide
+.hvr_flipp[data-flipp-slide] {
+  .front {
+    z-index: 1;
+  }
+}
+@mixin flipp_slide ($translate_name) {
+  .hvr_flipp[data-flipp-slide="#{$translate_name}"] {
+    @content;
+  }
+}
+@include flipp_slide(top) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateY(0%);
+  }
+  .rebirth {
+    transform: translateY(100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateY(-100%);
+    }
+    .rebirth {
+      transform: translateY(0%);
+    }
+  }
+}
+@include flipp_slide(bottom) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateY(0%);
+  }
+  .rebirth {
+    transform: translateY(-100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateY(100%);
+    }
+    .rebirth {
+      transform: translateY(0%);
+    }
+  }
+}
+@include flipp_slide(left) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateX(0%);
+  }
+  .rebirth {
+    transform: translateX(100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateX(-100%);
+    }
+    .rebirth {
+      transform: translateX(0%);
+    }
+  }
+}
+@include flipp_slide(right) {
+  @extend %css_btn_anime_base;
+  .front {
+    transform: translateX(0%);
+  }
+  .rebirth {
+    transform: translateX(-100%);
+    z-index: 2;
+  }
+  &:hover {
+    .front {
+      transform: translateX(100%);
+    }
+    .rebirth {
+      transform: translateX(0%);
+    }
+  }
+}
+
 
 // Keyframe Animation Code
 // @include animation(hvr_rotate2 0.5s ease-out);
